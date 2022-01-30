@@ -10,3 +10,7 @@ Webpack is an open-source JavaScript module bundler. It is made primarily for Ja
 - `asset/inline` exports a data URI of the asset. Previously achievable by using url-loader.
 - `asset/source` exports the source code of the asset. Previously achievable by using raw-loader.
 - `asset` automatically chooses between exporting a data URI and emitting a separate file. Previously achievable by using url-loader with asset size limit.
+
+#### Public Path
+
+The publicPath configuration option can be quite useful in a variety of scenarios. It allows you to specify the base path for all the assets within your application.
