@@ -20,3 +20,9 @@ The publicPath configuration option can be quite useful in a variety of scenario
 While loaders are used to transform certain types of modules, plugins can be leveraged to perform a wider range of tasks like bundle optimization, asset management and injection of environment variables.
 
 They also serve the purpose of doing anything else that a loader cannot do. Webpack provides many such plugins out of the box.
+
+#### Mode
+
+Providing the `mode` configuration option tells webpack to use its built-in optimizations accordingly.
+
+`string = 'production': 'none' | 'development' | 'production'`

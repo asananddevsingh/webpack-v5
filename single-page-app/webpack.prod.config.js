@@ -1,10 +1,11 @@
 const path = require('path');
-const TerserPlugin = require('terser-webpack-plugin');
+// const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+  mode: 'production',
   entry: './src/index.js',
   output: {
     filename: 'bundle.[contenthash].js',
@@ -36,8 +37,8 @@ module.exports = {
     ],
   },
   plugins: [
-    // No need to install it explicitly in webpack >= 5.
-    new TerserPlugin(),
+    // No need to install it explicitly in webpack >= 5. This gets included by default for production mode.
+    // new TerserPlugin(),
     // This will extract the CSS from bundle.js to seperate file.
     new MiniCssExtractPlugin({
       filename: 'styles.[contenthash].css',
