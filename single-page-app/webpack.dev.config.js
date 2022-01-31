@@ -3,6 +3,7 @@ const path = require('path');
 // const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const portFinderSync = require('portfinder-sync');
 
 module.exports = {
   mode: 'development',
@@ -60,4 +61,25 @@ module.exports = {
       },
     }),
   ],
+  devServer: {
+    open: true, // Tells dev-server to open the browser after server had been started. Set it to true to open your default browser.
+    // port: "auto",
+    port: portFinderSync.getPort(3000),
+    static: {
+      directory: path.resolve(__dirname, './dist'),
+    },
+    devMiddleware: {
+      index: 'index.html',
+      writeToDisk: true,
+    },
+    client: {
+      // overlay: false, //Shows a full-screen overlay in the browser when there are compiler errors or warnings.
+      // OR
+      // overlay: {
+      //   errors: true,
+      //   warnings: false,
+      // },
+      progress: true,
+    },
+  },
 };
