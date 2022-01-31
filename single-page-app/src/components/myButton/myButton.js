@@ -8,7 +8,7 @@ export class MyButton {
     button.classList.add('my-button');
     button.onclick = () => {
       const p = document.createElement('p');
-      p.innerText = 'You clicked button';
+      p.innerText = `You clicked button at ${new Date().toDateString()}`;
       p.classList.add('my-para');
       body.appendChild(p);
     };

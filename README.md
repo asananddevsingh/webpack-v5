@@ -14,3 +14,9 @@ Webpack is an open-source JavaScript module bundler. It is made primarily for Ja
 #### Public Path
 
 The publicPath configuration option can be quite useful in a variety of scenarios. It allows you to specify the base path for all the assets within your application.
+
+#### Plugins
+
+While loaders are used to transform certain types of modules, plugins can be leveraged to perform a wider range of tasks like bundle optimization, asset management and injection of environment variables.
+
+They also serve the purpose of doing anything else that a loader cannot do. Webpack provides many such plugins out of the box.
