@@ -1,16 +1,18 @@
 const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
   output: {
-    filename: 'bundle.js',
+    filename: 'bundle.[contenthash].js',
     // path: "./dist", // It will throw an error of not being "absolut path".
     // path: "/dist", // It will create the dist folder at the root drive e.g. C:/> or D:/> etc.
     path: path.resolve(__dirname, './dist'),
     // publicPath: "auto", // This is the default option in webpack >= v5.
-    publicPath: '../dist/',
+    publicPath: '',
   },
   module: {
     rules: [
@@ -34,10 +36,27 @@ module.exports = {
     ],
   },
   plugins: [
-    new TerserPlugin(), // No need to install it explicitly in webpack >= 5.
+    // No need to install it explicitly in webpack >= 5.
+    new TerserPlugin(),
+    // This will extract the CSS from bundle.js to seperate file.
     new MiniCssExtractPlugin({
-      // This will extract the CSS from bundle.js to seperate file.
-      filename: 'styles.css',
+      filename: 'styles.[contenthash].css',
+    }),
+    // By default, this plugin will clean everythin inside the "path" folder mentioned at output config (at top).
+    new CleanWebpackPlugin({
+      cleanOnceBeforeBuildPatterns: [
+        '**/*', // It will clean everything inside dist folder and its sub folders.
+        // Note: It will use pattern "**/*" by default, if we don't configure "cleanOnceBeforeBuildPatterns" property.
+        path.join(process.cwd(), 'build/**/*'), // This will match the path patten and delete files and sub-folders.
+      ],
+    }),
+    new HtmlWebpackPlugin({
+      title: 'Webpack Is Awsome',
+      // filename: "myIndex.html", // We can customize the file name, by default is index.html.
+      template: './public/index.html',
+      meta: {
+        author: 'Anand Dev Singh',
+      },
     }),
   ],
 };
