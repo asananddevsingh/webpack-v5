@@ -31,19 +31,35 @@ Providing the `mode` configuration option tells webpack to use its built-in opti
 
 There are multiple ways to define the entry property in your webpack configuration. We will show you the ways you can configure the entry property.
 
-> For single page app it can be used like ```module.exports = { entry: './path/to/my/entry/file.js', };`
+> For single page app it can be used like
 
-> For multiple page app it can be used like `module.exports = { entry: { app: './src/app.js', adminApp: './src/adminApp.js', },};` NOTE: The property name (app, adminApp) of page should be used to name chunk in `HtmlWebpackPlugin`.
+```
+module.exports = {
+  entry: './path/to/my/entry/file.js',
+};
+```
+
+> For multiple page app it can be used like.
+
+```
+module.exports = {
+  entry: {
+    app: './src/app.js',
+    adminApp: './src/adminApp.js',
+  },
+};
+**NOTE: The property name (app, adminApp) of page should be used to name chunk in `HtmlWebpackPlugin`.**
+```
 
 #### Optimization
 
 We use to split the shared libraries into seperate bundle and reference into files it is getting used. Also, it will include those bundle to the only files those need it.
 
 ```
-  optimization: {
-    splitChunks: {
-      chunks: 'all',
-      minSize: 3 * 1024, // It will only create seperate chunk if the size exceeds this value i.e. 3KB.
-    },
+optimization: {
+  splitChunks: {
+    chunks: 'all',
+    minSize: 3 * 1024, // It will only create seperate chunk if the size exceeds this value i.e. 3KB.
   },
+}
 ```
