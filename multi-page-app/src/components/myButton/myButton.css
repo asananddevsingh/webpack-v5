@@ -1,0 +1,11 @@
+.my-button {
+  padding: 8px 12px;
+  background-color: rgb(96, 0, 185);
+  color: #fff;
+}
+
+.my-para {
+  color: orangered;
+  font-size: 20px;
+  font-weight: bold;
+}

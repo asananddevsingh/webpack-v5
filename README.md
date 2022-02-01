@@ -26,3 +26,11 @@ They also serve the purpose of doing anything else that a loader cannot do. Webp
 Providing the `mode` configuration option tells webpack to use its built-in optimizations accordingly.
 
 `string = 'production': 'none' | 'development' | 'production'`
+
+#### Entry Points
+
+There are multiple ways to define the entry property in your webpack configuration. We will show you the ways you can configure the entry property.
+
+> For single page app it can be used like `module.exports = { entry: './path/to/my/entry/file.js', };`
+
+> For multiple page app it can be used like `module.exports = { entry: { app: './src/app.js', adminApp: './src/adminApp.js', },};` NOTE: The property name (app, adminApp) of page should be used to name chunk in `HtmlWebpackPlugin`.
