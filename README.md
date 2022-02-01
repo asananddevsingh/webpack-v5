@@ -48,7 +48,16 @@ module.exports = {
     adminApp: './src/adminApp.js',
   },
 };
+
 **NOTE: The property name (app, adminApp) of page should be used to name chunk in `HtmlWebpackPlugin`.**
+
+new HtmlWebpackPlugin({
+  title: 'My Page',
+  filename: 'index.html',
+  template: './public/tempalte.html',
+  chunks: ['app'], // The chunk name should be same as of the page name from the entry object above.
+}),
+
 ```
 
 #### Optimization
