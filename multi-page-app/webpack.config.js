@@ -33,6 +33,14 @@ module.exports = {
       },
     ],
   },
+  // This will split the shared libraries into seperate bundle and reference into files it is getting used.
+  // Also, it will include those bundle to the only files those need it.
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      minSize: 3 * 1024, // It will only create seperate chunk if the size exceeds this value i.e. 3KB.
+    },
+  },
   plugins: [
     // // This will extract the CSS from bundle.js to seperate file.
     new MiniCssExtractPlugin({
