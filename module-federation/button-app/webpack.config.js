@@ -2,6 +2,7 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { ModuleFederationPlugin } = require('webpack').container;
 
 module.exports = {
   mode: 'development',
@@ -9,7 +10,7 @@ module.exports = {
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, './dist'),
-    publicPath: '/static/',
+    publicPath: 'http://localhost:9001/',
   },
   module: {
     rules: [
@@ -40,6 +41,13 @@ module.exports = {
         author: 'Anand Dev Singh',
       },
       minify: false,
+    }),
+    new ModuleFederationPlugin({
+      name: 'ButtonApp',
+      filename: 'remoteEntry.js',
+      exposes: {
+        './myButton': './src/components/myButton/myButton.js',
+      },
     }),
   ],
 };

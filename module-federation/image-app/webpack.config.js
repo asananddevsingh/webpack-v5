@@ -1,8 +1,8 @@
 const path = require('path');
-// const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { ModuleFederationPlugin } = require('webpack').container;
 
 module.exports = {
   mode: 'development',
@@ -10,7 +10,7 @@ module.exports = {
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, './dist'),
-    publicPath: '/static/',
+    publicPath: 'http://localhost:9002/',
   },
   module: {
     rules: [
@@ -50,6 +50,12 @@ module.exports = {
         author: 'Anand Dev Singh',
       },
       minify: false,
+    }),
+    new ModuleFederationPlugin({
+      name: 'ImageApp',
+      remotes: {
+        RemoteButtonApp: 'ButtonApp@http://localhost:9001/remoteEntry.js',
+      },
     }),
   ],
 };

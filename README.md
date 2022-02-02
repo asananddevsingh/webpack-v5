@@ -72,3 +72,17 @@ optimization: {
   },
 }
 ```
+
+#### Module Federation
+
+Multiple separate builds should form a single application. These separate builds should not have dependencies between each other, so they can be developed and deployed individually.
+
+##### Button-App
+
+> Go to module-federation/button-app and run `npm install` (to install the dependencies) then `npm run build` (to build the project) after that `npm run start` (It will run the application at http://localhost:9001/). Keep it running.
+
+##### Image-App
+
+> Go to module-federation/image-app and run `npm install` (to install the dependencies) then `npm run build` (to build the project) after that `npm run start` (It will run the application at http://localhost:9002/). Keep it running too.
+
+You will see the `button` component from **Button-App** is getting used at **Image-App**.
